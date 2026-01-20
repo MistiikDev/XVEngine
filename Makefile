@@ -15,9 +15,11 @@ LDFLAGS   := -Llib -lmingw32 -lglfw3 -lopengl32 -lgdi32
 LDFLAGS = -Llib -lmingw32 -lglfw3 -lopengl32 -lgdi32
 
 # Source files
+
 SRC := $(shell find engine -type f \( -name "*.cpp" -o -name "*.c" \))
 SRC += $(shell find game -type f \( -name "*.cpp" -o -name "*.c" \))
 SRC += $(shell find third_party -type f \( -name "*.cpp" -o -name "*.c" \))
+SRC += $(shell find core -type f \( -name "*.c" -o \))
 
 OBJ := $(SRC:.cpp=.o)
 OBJ := $(OBJ:.c=.o)
