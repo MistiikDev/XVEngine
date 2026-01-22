@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <sdl2/SDL.h>
+
 namespace xv {
     enum class GraphicsAPI {
         OpenGL,
@@ -17,7 +19,8 @@ namespace xv {
     struct GraphicSettings {
         int ScreenW = 1280;
         int ScreenH = 720;
-
+        Uint32 windowFlag = SDL_WINDOW_ALLOW_HIGHDPI;
+        
         GraphicsAPI api = GraphicsAPI::OpenGL;
     };
 

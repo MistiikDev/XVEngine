@@ -1,16 +1,15 @@
 #include <iostream>
-#include <core/bootstrap.h>
 #include <core/application.h>
 
-int main() {
+int main(int argc, char* argv[]) {
     // Startup Engine
 
     if ( Bootstrap::Init( ) ) {
         Application::Init( );
 
-        while ( Application::bIsRunning( ) ) {
+        while ( Application::bIsRunning() ) {
             Application::BeginFrame();
-            Application::UpdateFrame( 0.0F );
+            Application::UpdateFrame( Time::DeltaTime() );
 
             Application::RenderFrame( );
             Application::EndFrame( );
@@ -18,4 +17,8 @@ int main() {
 
         Application::Close( );
     }
+
+    return 0;
 }
+
+    

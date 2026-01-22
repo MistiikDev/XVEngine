@@ -1,31 +1,28 @@
 #ifndef BOOTSTRAP_H
 #define BOOTSTRAP_H
 
-#include <glad/glad.h> 
 #include <core/config/user_config.h>
 #include <core/log/log.h>
-
-#include <platform/glfw/glfw_context.h>
 
 struct Bootstrap {
     public:
         static bool Init( ) {
             // Create User Default Settings 
             xv::UserSettings settings; // Fetch from last save later?
-            bool bWindowInit = GLFWContext::Init( settings );
+            s_settings = settings;
 
-            if ( bWindowInit ) {
-                XV_LOG_DEBUG("GLFW {}: {}", "Context", "Context sucessfully initiated.");
+            return true;
+        }
 
-                GLFWContext::PollEvents( );
-            }
-
-            return false;
+        static xv::UserSettings GetUserSettings() {
+            return s_settings;
         }
 
     private:
         Bootstrap() = delete;
         ~Bootstrap() = delete;
+
+        static xv::UserSettings s_settings;
 };
 
 #endif

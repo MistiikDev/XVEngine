@@ -4,15 +4,15 @@
 CXX = g++
 
 # Find all directories under 'src', 'include', and 'core'
-INC_FLAGS := -Igame/include -Iengine/include -Ithird_party -Ithird_party/imgui -Ithird_party/GLAD -Ithird_party/GLFW -Ithird_party/GLM -Ithird_party/KHR -Ithird_party/stb
+INC_FLAGS := -Igame/include -Iengine/include -Ithird_party -Ithird_party/GLAD -Ithird_party/SDL2 -Ithird_party/GLM -Ithird_party/KHR -Ithird_party/stb
 
 # 3. FLAGS
 # -MMD -MP creates .d files to track header dependencies
 CXXFLAGS  := -Wall -std=c++17 $(INC_FLAGS) -MMD -MP -fconcepts
-LDFLAGS   := -Llib -lmingw32 -lglfw3 -lopengl32 -lgdi32
+LDFLAGS   := -Llib -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lgdi32
 
 # Libraries
-LDFLAGS = -Llib -lmingw32 -lglfw3 -lopengl32 -lgdi32
+LDFLAGS = -Llib -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lgdi32
 
 # Source files
 

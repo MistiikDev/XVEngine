@@ -3,7 +3,7 @@
 
 # Ignore libraries
 lib/
-glfw.dll
+SDL2.dll
 
 # Ignore temporary files / IDE stuff
 *.exe
