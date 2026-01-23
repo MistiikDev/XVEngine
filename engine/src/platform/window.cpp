@@ -27,19 +27,25 @@ bool Window::Create( xv::UserSettings& user_settings ) {
         user_settings.graphics.windowFlag
     );
 
+    if (user_settings.graphics.api == xv::GraphicsAPI::OpenGL) {
+        SDL_GLContext glContext = SDL_GL_CreateContext( s_window );
+        SDL_GL_MakeCurrent(s_window, glContext);
+    }
+
     return true;
 }
 
 bool Window::PollActiveEvents() {
     SDL_PollEvent(&Window::s_windowActiveEvents);
 
+    Input::Update( Window::s_windowActiveEvents );
+
     switch (Window::s_windowActiveEvents.type) {
-        // Input::Listen(event)
         
         case SDL_QUIT: {
             return false;
         }
-
+        
         default: {
             //
         }

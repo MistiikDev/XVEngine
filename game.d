@@ -28,7 +28,11 @@ game.exe: main.cpp engine/include/core/application.h \
  third_party/sdl2/SDL_misc.h engine/include/core/log/log.h \
  third_party/fmt/core.h third_party/fmt/format.h third_party/fmt/base.h \
  third_party/fmt/format-inl.h engine/include/core/timexv.h \
- engine/include/platform/window.h
+ engine/include/platform/window.h engine/include/core/input.h \
+ third_party/SDL2/SDL.h engine/include/graphics/opengl/gl_context.h \
+ third_party/glad/glad.h third_party/KHR/khrplatform.h \
+ engine/include/graphics/graphic_context.h \
+ engine/include/graphics/directx11/dx11_context.h
 engine/include/core/application.h:
 engine/include/core/bootstrap.h:
 engine/include/core/config/user_config.h:
@@ -90,3 +94,10 @@ third_party/fmt/base.h:
 third_party/fmt/format-inl.h:
 engine/include/core/timexv.h:
 engine/include/platform/window.h:
+engine/include/core/input.h:
+third_party/SDL2/SDL.h:
+engine/include/graphics/opengl/gl_context.h:
+third_party/glad/glad.h:
+third_party/KHR/khrplatform.h:
+engine/include/graphics/graphic_context.h:
+engine/include/graphics/directx11/dx11_context.h:

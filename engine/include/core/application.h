@@ -4,6 +4,8 @@
 #include <core/bootstrap.h>
 #include <core/timexv.h>
 #include <platform/window.h>
+#include <graphics/opengl/gl_context.h>
+#include <graphics/directx11/dx11_context.h>
 
 class Application {
     public: 
@@ -21,6 +23,7 @@ class Application {
         ~Application() = delete;
 
         static bool m_isRunning;
+        static GraphicContext* s_graphicCTX;
 
 };
 

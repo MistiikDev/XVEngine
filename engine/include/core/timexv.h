@@ -1,6 +1,8 @@
 #ifndef TIMEXV_H
 #define TIMEXV_H
 
+#define MAX_DELTA_TIME 1.0f
+
 #include <chrono>
 
 using CLOCK = std::chrono::steady_clock;
