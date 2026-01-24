@@ -1,6 +1,3 @@
-# Ignore build outputs
-/build/
-
 # Ignore libraries
 lib/
 SDL2.dll
@@ -19,6 +16,7 @@ SDL2.dll
 
 make
 core/glad.c
+game.d
 
 # Ignore large vendor headers
 third_party/

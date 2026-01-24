@@ -8,10 +8,6 @@
 #include <platform/window.h>
 #include <sdl2/SDL_syswm.h>
 
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "dxgi.lib")
-#pragma comment(lib, "d3dcompiler.lib")
-
 class DX11Context : public GraphicContext {
     public:
         void Init( int screen_x, int screen_y, int screen_w, int screen_h ) override;

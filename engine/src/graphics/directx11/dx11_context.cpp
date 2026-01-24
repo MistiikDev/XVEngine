@@ -12,7 +12,6 @@ HWND DX11Context::GetActiveWindowHandle() {
 }
 
 void DX11Context::CreateSwapChain( int screen_w, int screen_h ) {
-
     DXGI_SWAP_CHAIN_DESC scd    = {0};
     scd.BufferCount             = 1;
     scd.BufferDesc.Format       = DXGI_FORMAT_R8G8B8A8_UNORM;               // Buffer will hold RBGA default 8 bytes values (vector3s)
