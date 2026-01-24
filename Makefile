@@ -8,7 +8,7 @@ INC_FLAGS := -Igame/include -Iengine/include -Ithird_party -Ithird_party/GLAD -I
 
 # 3. FLAGS
 # -MMD -MP creates .d files to track header dependencies
-CXXFLAGS  := -Wall -std=c++17 $(INC_FLAGS) -MMD -MP -fconcepts
+CXXFLAGS  := -Wall -std=c++17 $(INC_FLAGS) -fconcepts
 LDFLAGS   := -Llib -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lgdi32 -ld3d11 -ldxgi -ld3dcompiler
 
 # Source files
