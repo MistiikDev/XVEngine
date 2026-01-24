@@ -13,7 +13,11 @@ void Application::Init( ) {
 
     if (settings.graphics.api == xv::GraphicsAPI::OpenGL) {
         s_graphicCTX = new GLContext();
+    } else if(settings.graphics.api == xv::GraphicsAPI::DirectX11) {
+        s_graphicCTX = new DX11Context();
     }
+
+
 
     if (s_graphicCTX == nullptr) {
         // TODO: Proper error handling here
@@ -29,19 +33,22 @@ void Application::BeginFrame() {
     if (!Window::PollActiveEvents()) {
         m_isRunning = false;
     }
-}
 
-void Application::RenderFrame() {
-    XV_LOG_DEBUG("{} : {}", "Application", "Render Frame");
-    s_graphicCTX->RenderActive();
+    s_graphicCTX->PrepareRender(); // TODO: pass a batch of verticies maybe...
 }
 
 void Application::UpdateFrame( float dt ) {
     //DEBUG XV_LOG_DEBUG("{} : {} {}", "Application", "Update : DELTA_TIME = ", dt);
 }
 
+void Application::RenderFrame() {
+    s_graphicCTX->RenderActive();
+}
+
 void Application::EndFrame() {
     Input::Clear();
+
+    s_graphicCTX->SwapBuffers();
 }
 
 void Application::Close() {

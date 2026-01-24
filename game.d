@@ -218,7 +218,8 @@ game.exe: main.cpp engine/include/core/application.h \
  third_party/glm/gtc/../gtc/../ext/vector_uint1.hpp \
  third_party/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp \
  third_party/glm/gtc/type_ptr.inl \
- engine/include/graphics/directx11/dx11_context.h
+ engine/include/graphics/directx11/dx11_context.h \
+ third_party/sdl2/SDL_syswm.h
 engine/include/core/application.h:
 engine/include/core/bootstrap.h:
 engine/include/core/config/user_config.h:
@@ -483,3 +484,4 @@ third_party/glm/gtc/../gtc/../ext/vector_uint1.hpp:
 third_party/glm/gtc/../gtc/../ext/vector_uint1_sized.hpp:
 third_party/glm/gtc/type_ptr.inl:
 engine/include/graphics/directx11/dx11_context.h:
+third_party/sdl2/SDL_syswm.h:

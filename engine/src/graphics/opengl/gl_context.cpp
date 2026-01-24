@@ -48,6 +48,7 @@ void GLContext::Init( int screen_x, int screen_y, int screen_w, int screen_h ) {
         XV_LOG_ERROR("{} {} : {}", "OpenGL Shader", "MEMORY HEAP FAILURE", "Could not allocate shader memory.");
     }
 
+    // VAO, VBO and EBO, the usual basic shit
     m_cubeVAO = new GLArray();
     m_cubeVBO = new GLBuf();
     m_cubeIBO = new GLBuf();
@@ -59,6 +60,8 @@ void GLContext::Init( int screen_x, int screen_y, int screen_w, int screen_h ) {
     m_cubeVBO->Bind();
     m_cubeVBO->Upload( cubeVertices, sizeof(cubeVertices), GL_STATIC_DRAW );
 
+    // layout at 0 will be 3 floats for position
+    // layout at 1 will be 3 floats for color (TODO: expand to 4 for alpha if needed)
     m_cubeVAO->LinkAttribute((*m_cubeVBO), 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0); // position
     m_cubeVAO->LinkAttribute((*m_cubeVBO), 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3 * sizeof(float))); // color
 
@@ -69,6 +72,13 @@ void GLContext::Init( int screen_x, int screen_y, int screen_w, int screen_h ) {
     m_cubeVBO->Unbind();
     m_cubeIBO->Unbind();
 
+    // the MVP calculations
+    // model = the final matrix
+    // view = local desired transformation
+    // perspective is the "world" from which to move shit (camera)
+
+    // transf = p * v * m
+
     glm::vec3 objectPosition = glm::vec3(0.0f);
     glm::mat4 perspective = glm::perspective(glm::radians(70.0f), (float)(screen_w) / (float)(screen_h), 0.1f, 100.0f);
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
@@ -78,18 +88,21 @@ void GLContext::Init( int screen_x, int screen_y, int screen_w, int screen_h ) {
     cube_transform = perspective * view * model;
 }   
 
-void GLContext::RenderActive() {
+void GLContext::PrepareRender() {
     glClearColor( 0.52f, 0.80f, 0.92f, 1.0f ); // Default Color
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     m_activeShader->Activate();
     m_activeShader->SetMatrix4f("u_MVP", cube_transform);
+}
 
+void GLContext::RenderActive() {
     m_cubeVAO->Bind();
     m_cubeIBO->Bind();
 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)(0));
-
+}
+void GLContext::SwapBuffers() {
     SDL_GL_SwapWindow( Window::GetSDLWindow() );
 
     m_cubeVAO->Unbind();

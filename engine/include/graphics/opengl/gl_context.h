@@ -13,6 +13,9 @@ class GLContext : public GraphicContext {
         void Init( int screen_x, int screen_y, int screen_w, int screen_h ) override;
         void RenderActive( ) override;
         void Destroy() override;
+
+        void PrepareRender() override;
+        void SwapBuffers() override;
         
     private:
         SDL_GLContext m_sdlContext;
