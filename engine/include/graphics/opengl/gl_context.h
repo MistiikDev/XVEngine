@@ -4,7 +4,9 @@
 #include <glad/glad.h> 
 #include <graphics/graphic_context.h>
 
-#include <iostream>
+#include <graphics/opengl/buffers/GLArray.h>
+#include <graphics/opengl/buffers/GLBuf.h>
+#include <graphics/opengl/buffers/GLShader.h>
 
 class GLContext : public GraphicContext {
     public:
@@ -14,6 +16,13 @@ class GLContext : public GraphicContext {
         
     private:
         SDL_GLContext m_sdlContext;
+        GLShader* m_activeShader;
+
+        GLArray* m_cubeVAO;
+        GLBuf* m_cubeVBO;
+        GLBuf* m_cubeIBO;
+
+        glm::mat4 cube_transform;
 
 };
 

@@ -9,6 +9,9 @@ class GraphicContext {
         virtual void RenderActive();
         virtual void Destroy();
 
+        ~GraphicContext() {
+            
+        }
     private:
 
 };
