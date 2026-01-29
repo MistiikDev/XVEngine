@@ -3,12 +3,14 @@ This project's first purpose is to make me learn the most of graphics programmin
 
 ## Build requirements
 Inside "third_party"
+```
     - fmt
     - GLAD (GL ver. 330)
     - GLM
     - KHR 
     - SDL2
     - stb
+```
 
 Have directx11 installed (already the case for most Windows users)
 
