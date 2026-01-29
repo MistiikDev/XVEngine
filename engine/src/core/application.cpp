@@ -49,16 +49,28 @@ void Application::Init( ) {
     scene = Scene {};
 
     Mesh* default_mesh = new Mesh {};
+    Mesh* default_mesh_second = new Mesh {};
+
     default_mesh->ID = 1;
+    default_mesh_second->ID = 2;
+
     default_mesh->verticies = std::vector<Vertex>(std::begin(cubeVertices), std::end(cubeVertices));
     default_mesh->indicies =  std::vector<uint32_t>(std::begin(cubeIndices), std::end(cubeIndices));
+
+    default_mesh_second->verticies = std::vector<Vertex>(std::begin(cubeVertices), std::end(cubeVertices));
+    default_mesh_second->indicies =  std::vector<uint32_t>(std::begin(cubeIndices), std::end(cubeIndices));
     
     glm::mat4 perspective = glm::perspective(glm::radians(70.0f), (float)(settings.graphics.ScreenW) / (float)(settings.graphics.ScreenH), 0.1f, 100.0f);
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f));
+    glm::mat4 view1 = glm::translate(glm::mat4(1.0f), glm::vec3(-2.0f, 0.0f, -3.0f));
+    glm::mat4 view2 = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, 0.0f, -3.0f));
+
     glm::mat4 model = glm::mat4(1.0f);
 
-    default_mesh->transform = perspective * view * model;
+    default_mesh->transform = perspective * view1 * model;
+    default_mesh_second->transform = perspective * view2 * model;
+
     scene.meshes.push_back( default_mesh );
+    scene.meshes.push_back( default_mesh_second );
 
     //
 
