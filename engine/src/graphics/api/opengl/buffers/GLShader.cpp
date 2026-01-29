@@ -1,4 +1,4 @@
-#include <graphics/opengl/buffers/GLShader.h>
+#include <graphics/api/opengl/buffers/GLShader.h>
 
 GLShader::GLShader( const char* vertexShader, const char* fragmentShader ) {
     std::string vertexShaderCode = XV_READ_FILE(vertexShader);

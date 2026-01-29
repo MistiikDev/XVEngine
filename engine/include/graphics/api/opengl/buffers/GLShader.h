@@ -14,8 +14,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#define DEFAULT_VERTEX_SHADER "engine/src/graphics/opengl/shaders/default.vert"
-#define DEFAULT_FRAG_SHADER "engine/src/graphics/opengl/shaders/default.frag"
+#define DEFAULT_VERTEX_SHADER "engine/src/graphics/api/opengl/shaders/default.vert"
+#define DEFAULT_FRAG_SHADER "engine/src/graphics/api/opengl/shaders/default.frag"
 
 class GLShader
 {

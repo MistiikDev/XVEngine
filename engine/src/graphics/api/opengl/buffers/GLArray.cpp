@@ -2,7 +2,7 @@
 // Created by User on 28/11/2025.
 //
 
-#include <graphics/opengl/buffers/GLArray.h>
+#include <graphics/api/opengl/buffers/GLArray.h>
 
 GLArray::GLArray() {
     glGenVertexArrays(1, &this->ID);

@@ -4,8 +4,12 @@
 #include <core/bootstrap.h>
 #include <core/timexv.h>
 #include <platform/window.h>
-#include <graphics/opengl/gl_context.h>
-#include <graphics/directx11/dx11_context.h>
+#include <graphics/api/opengl/gl_context.h>
+#include <graphics/api/directx11/dx11_context.h>
+
+// temporary
+#include <graphics/objects/mesh.h>
+#include <world/scene.h>
 
 class Application {
     public: 
@@ -24,6 +28,8 @@ class Application {
 
         static bool m_isRunning;
         static GraphicContext* s_graphicCTX;
+
+        static Scene scene;
 
 };
 

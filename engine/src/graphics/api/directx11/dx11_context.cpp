@@ -1,4 +1,8 @@
-#include <graphics/directx11/dx11_context.h>
+#include <graphics/api/directx11/dx11_context.h>
+
+DX11Context::DX11Context() {
+    
+}
 
 HWND DX11Context::GetActiveWindowHandle() {
     SDL_Window* win = Window::GetSDLWindow();

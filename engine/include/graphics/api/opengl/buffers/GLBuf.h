@@ -6,6 +6,7 @@
 
 struct GLBuf
 {
+    GLuint elementCount = 0;
     GLuint ID = 0;
     GLenum Target = 0;
     GLsizei ByteSize = 0;
@@ -15,10 +16,10 @@ struct GLBuf
         glGenBuffers(1, &ID);
     }
 
-    void Upload(const void* data, GLsizei byteSize, GLenum usage) {
+    void Upload(const void* data, GLsizei byteSize, GLuint count, GLenum usage) {
         //XV_ASSERT(ID != 0); TODO: Implement assert later
-
         ByteSize = byteSize;
+        elementCount = count;
 
         glBindBuffer(Target, ID);
         glBufferData(Target, ByteSize, data, usage);

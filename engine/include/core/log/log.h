@@ -13,7 +13,7 @@ namespace xv {
         inline void Error( const char* file, int line, const char* format, Args&& ...args ) {
             auto message = fmt::format(format, std::forward<Args>(args)...);
 
-            fmt::print(stderr, "[ERROR] [{}:{}]{}\n", file, line, message);
+            fmt::print(stderr, "[ERROR] [{}:{}] {}\n", file, line, message);
         }
 
         template <typename ...Args>

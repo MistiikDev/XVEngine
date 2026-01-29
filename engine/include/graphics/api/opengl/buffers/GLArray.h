@@ -6,7 +6,7 @@
 #define GLArray_H
 
 #include <glad/glad.h>
-#include <graphics/opengl/buffers/GLBuf.h>
+#include <graphics/api/opengl/buffers/GLBuf.h>
 
 class GLArray {
     public:

@@ -4,12 +4,14 @@
 #include <d3d11.h>
 #include <wrl/client.h>
 
-#include <graphics/graphic_context.h>
+#include <graphics/api/graphic_context.h>
 #include <platform/window.h>
 #include <sdl2/SDL_syswm.h>
 
 class DX11Context : public GraphicContext {
     public:
+        DX11Context();
+        
         void Init( int screen_x, int screen_y, int screen_w, int screen_h ) override;
         void RenderActive( ) override;
         void Destroy() override;
