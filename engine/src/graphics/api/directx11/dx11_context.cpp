@@ -12,8 +12,11 @@ HWND DX11Context::GetActiveWindowHandle() {
 
     this->m_SDL_HWND = wmInfo.info.win.window;
 
+    XV_LOG_DEBUG("{} : {} ", "DX11_CTX", "Created HWND");
+
     return this->m_SDL_HWND;
 }
+
 
 void DX11Context::CreateSwapChain( int screen_w, int screen_h ) {
     DXGI_SWAP_CHAIN_DESC scd                = {0};
@@ -48,6 +51,8 @@ void DX11Context::CreateSwapChain( int screen_w, int screen_h ) {
         nullptr,
         &m_context
     );
+
+    XV_LOG_DEBUG("{} : {} ", "DX11_CTX", "Created Swap Chain");
 }
 
 
@@ -57,6 +62,8 @@ void DX11Context::CreateRenderTarget() {
     m_device->CreateRenderTargetView(back_buffer, nullptr, &m_renderTargetView);
 
     back_buffer->Release();
+
+    XV_LOG_DEBUG("{} : {} ", "DX11_CTX", "Created Render Target");
 }
 
 void DX11Context::CreateDepthStencil( int screen_w, int screen_h ) {
@@ -92,6 +99,8 @@ void DX11Context::CreateDepthStencil( int screen_w, int screen_h ) {
         // TODO: Handle error on depth stencil view creation failure
         return;
     }
+
+    XV_LOG_DEBUG("{} : {} ", "DX11_CTX", "Created Depth Stencil");
 }
 
 void DX11Context::CreateRasterizer() {
@@ -103,6 +112,8 @@ void DX11Context::CreateRasterizer() {
 
     m_device->CreateRasterizerState(&rasterDesc, &m_rasterState);
     m_context->RSSetState(m_rasterState.Get());
+
+    XV_LOG_DEBUG("{} : {} ", "DX11_CTX", "Created Rasterizer");
 }
 
 void DX11Context::CreateViewport( int screen_w, int screen_h ) {
@@ -136,15 +147,14 @@ void DX11Context::Init( int screen_x, int screen_y, int screen_w, int screen_h )
     this->BindRenderTargets();
 
     
-    this->m_activeShader = new DXShader( &m_device, &m_context );
+    this->m_activeShader = new DXShader( m_device, m_context );
     this->m_activeShader->CreateConstantBuffers();
+    this->m_activeShader->CompileShaders(L"engine/src/graphics/api/directx11/shaders/default.hlsl");
 
     this->mVertexLayout = new DX11Layout();
     this->mVertexLayout->LinkAttribute( "POSITION", DXGI_FORMAT_R32G32B32_FLOAT, 0 );
     this->mVertexLayout->LinkAttribute( "COLOR", DXGI_FORMAT_R32G32B32_FLOAT, offsetof(Vertex, color) );
-    this->mVertexLayout->CompileAttributeLayer(this->m_device, this->m_context, m_activeShader->GetVSShaderBuffer() );
-
-    this->m_activeShader->CompileShaders(L"engine/src/graphics/api/directx11/shaders/default.hlsl");
+    this->mVertexLayout->CompileAttributeLayer(this->m_device, this->m_context, m_activeShader->GetVSShaderBuffer() ); // from this right here
 }
 
 void DX11Context::PassBatch ( Scene& scene ) {

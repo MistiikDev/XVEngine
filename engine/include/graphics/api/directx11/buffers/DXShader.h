@@ -15,7 +15,7 @@ struct CB_Data {
 
 class DXShader {
     public: 
-        DXShader( Microsoft::WRL::ComPtr<ID3D11Device>* device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>* context ): m_device(device), m_context(context) {} ;
+        DXShader( Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& context ): m_device(device), m_context(context) {} ;
 
         void CreateConstantBuffers( );
         void CompileShaders( const wchar_t* hlsl_shader_source );
@@ -31,8 +31,8 @@ class DXShader {
         Microsoft::WRL::ComPtr<ID3D11PixelShader> mPS_shader;
         
         // Active DX11 Context
-        Microsoft::WRL::ComPtr<ID3D11Device>* m_device;
-        Microsoft::WRL::ComPtr<ID3D11DeviceContext>* m_context;
+        Microsoft::WRL::ComPtr<ID3D11Device>& m_device;
+        Microsoft::WRL::ComPtr<ID3D11DeviceContext>& m_context;
 };
 
 #endif

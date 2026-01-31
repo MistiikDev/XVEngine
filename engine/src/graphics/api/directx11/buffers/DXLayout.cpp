@@ -1,7 +1,7 @@
 #include <graphics/api/directx11/buffers/DXLayout.h>
 
 DX11Layout::DX11Layout() {
-
+     XV_LOG_DEBUG("{} : {} ", "DX11_LAYOUT", "Created Layout");
 }
 
 void DX11Layout::LinkAttribute( const char* LAYOUT_NAME, DXGI_FORMAT FORMAT, UINT offset ) {
@@ -10,6 +10,8 @@ void DX11Layout::LinkAttribute( const char* LAYOUT_NAME, DXGI_FORMAT FORMAT, UIN
     };
 
     this->attributes.push_back(attribute_desc);
+
+    XV_LOG_DEBUG("{} : {} -> {} ", "DX11_LAYOUT", "LINKED ATTRIBUTE", LAYOUT_NAME);
 }
 
 void DX11Layout::CompileAttributeLayer( Microsoft::WRL::ComPtr<ID3D11Device>& device, Microsoft::WRL::ComPtr<ID3D11DeviceContext>& context, Microsoft::WRL::ComPtr<ID3DBlob>& vertex_shader_buffer ) {
@@ -20,5 +22,7 @@ void DX11Layout::CompileAttributeLayer( Microsoft::WRL::ComPtr<ID3D11Device>& de
 
     device->CreateInputLayout( attributes.data(), attributes.size(), vertex_shader_buffer->GetBufferPointer(), vertex_shader_buffer->GetBufferSize(), &VS_LAYOUT);
     context->IASetInputLayout( VS_LAYOUT );
+
+    XV_LOG_DEBUG("{} : {} ", "DX11_LAYOUT", "LINKED Compiled Layot");
 }
 
