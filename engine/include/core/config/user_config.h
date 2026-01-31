@@ -21,7 +21,7 @@ namespace xv {
         int ScreenH = 720;
         Uint32 windowFlag = SDL_WINDOW_ALLOW_HIGHDPI;
         
-        GraphicsAPI api = GraphicsAPI::OpenGL;
+        GraphicsAPI api = GraphicsAPI::DirectX11;
     };
 
     struct UserSettings {

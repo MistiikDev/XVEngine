@@ -3,8 +3,13 @@
 
 #include <d3d11.h>
 #include <wrl/client.h>
+#include <unordered_map>
 
 #include <graphics/api/graphic_context.h>
+#include <graphics/api/directx11/buffers/DXLayout.h>
+#include <graphics/api/directx11/buffers/DXBuf.h>
+#include <graphics/api/directx11/buffers/DXShader.h>
+
 #include <platform/window.h>
 #include <sdl2/SDL_syswm.h>
 
@@ -13,6 +18,7 @@ class DX11Context : public GraphicContext {
         DX11Context();
         
         void Init( int screen_x, int screen_y, int screen_w, int screen_h ) override;
+        void PassBatch ( Scene& scene ) override;
         void RenderActive( ) override;
         void Destroy() override;
 
@@ -27,6 +33,7 @@ class DX11Context : public GraphicContext {
         void CreateRenderTarget();
         void CreateDepthStencil( int screen_w, int screen_h );
         void CreateViewport( int screen_w, int screen_h );
+        void CreateRasterizer();
 
         void BindRenderTargets();
 
@@ -35,9 +42,17 @@ class DX11Context : public GraphicContext {
         Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain;
 
         Microsoft::WRL::ComPtr<ID3D11Texture2D> m_depthBuffer;
-
         Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_renderTargetView;
         Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_depthStencilView;
+        
+        Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_rasterState;
+
+        //
+        DXShader* m_activeShader = nullptr;
+        DX11Layout* mVertexLayout = nullptr;
+        
+        std::unordered_map<unsigned int, DX11Buf*> mVertexBuffers;
+        std::unordered_map<unsigned int, DX11Buf*> mIndexBuffers;
 };
 
 #endif
